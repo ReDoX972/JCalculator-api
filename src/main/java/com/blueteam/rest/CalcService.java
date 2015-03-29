@@ -30,14 +30,12 @@ public class CalcService {
 	@GET
 	public Response EvaluateExpression(@QueryParam("expression") String s) throws JSONException {
 		
-		double parsed_value = 0;
 		JSONObject json = new JSONObject();
 		ResponseBuilder resp;
 		
 		try {
-			// Try to parse the mathematical expression parameter
-			parsed_value = (double) engine.eval(s);
-			json.put("result", parsed_value); 
+			// Try to parse the mathematical expression parameter and put it into json object
+			json.put("result", engine.eval(s)); 
 			
 			// Build the OK response
 			resp = Response.ok(json.toString(), MediaType.APPLICATION_JSON);
